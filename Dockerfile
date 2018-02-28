@@ -5,6 +5,7 @@ RUN apt-get update \
 		liblua5.3-0 \
 		libpcre3 \
 		libssl1.1 \
+		rsyslog \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV HAPROXY_MAJOR 1.8
