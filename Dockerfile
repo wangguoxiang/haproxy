@@ -1,7 +1,7 @@
 FROM  ubuntu:14.04
 
 #COPY ./sources.list /etc/apt/sources.list
-RUN apt-get install software-properties-common \
+RUN apt-get update && apt-get install software-properties-common \
     && add-apt-repository ppa:vbernat/haproxy-1.8 \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends haproxy=1.8.\* \
