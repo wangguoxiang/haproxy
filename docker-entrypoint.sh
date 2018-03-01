@@ -4,11 +4,12 @@ set -e
 mkdir /var/log/haproxy
 chmod a+w /var/log/haproxy
 
-echo '# Provides UDP syslog reception \
-      $ModLoad imudp \
-      $UDPServerRun 514 \
-      # Save haproxy log \
-	  local0.*                       /var/log/haproxy/haproxy.log' >>/etc/rsyslog.conf
+egrep 'UDPServerRun|ModLoad' /etc/rsyslog.conf
+sed -i 's/#$UDPServerRun 514/$UDPServerRun 514/g' /etc/rsyslog.conf
+sed -i 's/#$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf
+sed -n -e '/$ModLoad imudp/p' -e '/$UDPServerRun/p' /etc/rsyslog.conf
+echo 'local0.*                       /var/log/haproxy/haproxy.log' >>/etc/rsyslog.conf
+sed -i 's/\/var\/log\/haproxy.log/\/var\/log\/haproxy\/haproxy.log/g' /etc/rsyslog.d/*.conf
 
 mkdir /etc/sysconfig
 echo '# Options for rsyslogd \
