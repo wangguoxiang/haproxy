@@ -8,7 +8,7 @@ RUN apt-get update \
         rsyslog \
         vim \
 	&& rm -rf /var/lib/apt/lists/* \
-    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+    && ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime && echo $TIMEZONE > /etc/timezone
 
 ENV HAPROXY_MAJOR 1.8
 ENV HAPROXY_VERSION 1.8.4
